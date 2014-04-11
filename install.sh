@@ -5,6 +5,8 @@ INSTALL_DIR=$HOME/elk
 echo Installing ELK stack into $INSTALL_DIR
 mkdir -p $INSTALL_DIR
 
+cp nfl.conf $INSTALL_DIR
+
 cd $INSTALL_DIR
 curl -O https://download.elasticsearch.org/logstash/logstash/logstash-1.4.0.tar.gz
 curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.tar.gz
