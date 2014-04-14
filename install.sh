@@ -83,7 +83,7 @@ else
 fi
 
 echo Starting Elasticsearch to run in the background.  
-bin/elasticsearch -d
+bin/elasticsearch -d --cluster.name=es_demo.`date +%s` --network.host=localhost
 
 cd ../$LOGSTASH_PATH
 echo loading nfl data using logstash
