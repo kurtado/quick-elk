@@ -76,7 +76,7 @@ else
 
 fi
 
-cp week-by-week.json plugins/kibana/_site/app/dashboards/
+cp ../week-by-week.json plugins/kibana/_site/app/dashboards/
 
 if [ -d "plugins/kopf" ];
 then
@@ -97,10 +97,13 @@ sh bin/logstash -f ../nfl.conf < ../$NFL_DATA_FILE_NAME
 #TODO get the Twitter feed and dashboard setup
 
 
-echo Now browse to http://localhost:9200/_plugin/marvel
+echo Now browse to:
+echo  http://localhost:9200/_plugin/marvel
 echo or
-echo Now browse to http://localhost:9200/_plugin/kopf
+echo http://localhost:9200/_plugin/kopf
 echo or
-echo Now browse to http://localhost:9200/_plugin/kibana
+echo http://localhost:9200/_plugin/kibana
+echo or
+echo http://localhost:9200/_plugin/kibana/index.html#/dashboard/file/week-by-week.json
 
 exit
