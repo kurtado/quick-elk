@@ -17,6 +17,7 @@ mkdir -p $INSTALL_DIR
 
 cp twitter.conf $INSTALL_DIR
 cp nfl.conf $INSTALL_DIR
+cp week-by-week.json $INSTALL_DIR
 cp $NFL_DATA_BINARY $INSTALL_DIR
 
 cd $INSTALL_DIR
@@ -74,6 +75,8 @@ else
 	mv plugins/kibana/kibana-latest plugins/kibana/_site
 
 fi
+
+cp week-by-week.json plugins/kibana/_site/app/dashboards/
 
 if [ -d "plugins/kopf" ];
 then
