@@ -15,6 +15,7 @@ KIBANA_BINARY=kibana-latest.zip
 echo Installing ELK stack into $INSTALL_DIR
 mkdir -p $INSTALL_DIR
 
+cp twitter.conf $INSTALL_DIR
 cp nfl.conf $INSTALL_DIR
 cp $NFL_DATA_BINARY $INSTALL_DIR
 
