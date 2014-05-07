@@ -93,10 +93,6 @@ cd ../$LOGSTASH_PATH
 echo loading nfl data using logstash
 sh bin/logstash -f ../nfl.conf < ../$NFL_DATA_FILE_NAME
 
-#TODO load NFL JSON DASHBOARD INTO KIBANA - find out how from Rashid - have it exported.
-#TODO get the Twitter feed and dashboard setup
-
-
 echo Now browse to:
 echo  http://localhost:9200/_plugin/marvel
 echo or
