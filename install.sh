@@ -1,11 +1,9 @@
 #!/bin/bash
 
 INSTALL_DIR=$HOME/elk
-#LOGSTASH_PATH=logstash-1.4.0
-LOGSTASH_PATH=logstash-1.4.1.dev
-#LOGSTASH_BINARY=$LOGSTASH_PATH.tar.gz
-LOGSTASH_BINARY=logstash-latest.tar.gz
-ES_PATH=elasticsearch-1.1.1
+LOGSTASH_PATH=logstash-1.4.2
+LOGSTASH_BINARY=$LOGSTASH_PATH.tar.gz
+ES_PATH=elasticsearch-1.3.1
 ES_BINARY=$ES_PATH.tar.gz
 NFL_DATA_FILE_NAME=2012_nfl_pbp_data.csv
 NFL_DATA_BINARY=2012_nfl_pbp_data.csv.gz
@@ -25,9 +23,8 @@ if test -s $LOGSTASH_BINARY
 then
     echo Logstash already Downloaded
 else
-	echo Downloading logstash 1.4.x
-#	curl -O https://download.elasticsearch.org/logstash/logstash/$LOGSTASH_BINARY
-  curl -O https://s3-us-west-2.amazonaws.com/build.elasticsearch.org/origin/master/nightly/JDK7/logstash-latest.tar.gz
+	echo Downloading logstash 1.4.2
+ 	curl -O https://download.elasticsearch.org/logstash/logstash/$LOGSTASH_BINARY
 fi
 
 if test -s $ES_BINARY
