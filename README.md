@@ -3,6 +3,8 @@ quick-elk
 
 Install and run an ELK stack on your laptop, lickety-split!
 
+Now featuring Kibana 4... Hope you enjoy it... Play around a bit and let me know of any issues. Thanks!
+
 Quick Install
 =============
 Simply clone this repo and run install.sh. It will automatically download versions of Elasticsearch, Logstash and Kibana and install them in a local directory. (Kibana will be installed as an Elasticsearch plugin).
