@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALL_DIR=$HOME/elk
+INSTALL_DIR=${1:-`dirname $0`/elk}
 LOGSTASH_PATH=logstash-1.4.2
 LOGSTASH_BINARY=$LOGSTASH_PATH.tar.gz
 ES_PATH=elasticsearch-1.4.4
@@ -8,7 +8,7 @@ ES_BINARY=$ES_PATH.tar.gz
 NFL_DATA_FILE_NAME=2012_nfl_pbp_data.csv
 NFL_DATA_BINARY=2012_nfl_pbp_data.csv.gz
 KIBANA_VERSION=kibana-4.0.1
-KIBANA_OS=darwin-x64
+KIBANA_OS="`uname | tr '[:upper:]' '[:lower:]'`-x64"
 KIBANA_BINARY=$KIBANA_VERSION-$KIBANA_OS
 
 echo Installing ELK stack into $INSTALL_DIR

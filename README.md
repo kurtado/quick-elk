@@ -7,7 +7,7 @@ Now featuring Kibana 4... Hope you enjoy it... Play around a bit and let me know
 
 Quick Install
 =============
-Simply clone this repo and run install.sh. It will automatically download versions of Elasticsearch, Logstash and Kibana and install them in a local directory. (Kibana will be installed as an Elasticsearch plugin).
+Simply clone this repo and run install.sh. It will automatically download versions of Elasticsearch, Logstash and Kibana and install them into the local location of this repo. (Kibana will be installed as an Elasticsearch plugin). If you want to overrie the install location supply it as the first command line parameter when invoking the script.
 
 The install script will also ingest a dataset containing 2012 NFL play-by-play data, plus install a very basic Kibana dashboard (containing only one row + panel).
 
