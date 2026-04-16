@@ -1,0 +1,21 @@
+# Downloaded ELK binaries and extracted directories
+logstash-*/
+elasticsearch-*/
+kibana-*/
+*.tar.gz
+
+# Decompressed data files
+2012_nfl_pbp_data.csv
+
+# Log files
+*.log
+logs
+
+# Local credential overrides — never commit real secrets
+twitter-local.conf
+
+# OS / editor artifacts
+.DS_Store
+*.swp
+*.swo
+*~
