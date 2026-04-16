@@ -1,6 +1,7 @@
 #!/bin/bash
+set -euo pipefail
 
-INSTALL_DIR=$HOME/elk
+INSTALL_DIR="$HOME/elk"
 LOGSTASH_PATH=logstash-1.4.2
 LOGSTASH_BINARY=$LOGSTASH_PATH.tar.gz
 ES_PATH=elasticsearch-1.4.4
@@ -11,79 +12,79 @@ KIBANA_VERSION=kibana-4.0.1
 KIBANA_OS=darwin-x64
 KIBANA_BINARY=$KIBANA_VERSION-$KIBANA_OS
 
-echo Installing ELK stack into $INSTALL_DIR
-mkdir -p $INSTALL_DIR
+echo "Installing ELK stack into $INSTALL_DIR"
+mkdir -p "$INSTALL_DIR"
 
-cp twitter.conf $INSTALL_DIR
-cp nfl.conf $INSTALL_DIR
-cp week-by-week.json $INSTALL_DIR
-cp $NFL_DATA_BINARY $INSTALL_DIR
-cp populate_kibana.sh $INSTALL_DIR
+cp twitter.conf "$INSTALL_DIR"
+cp nfl.conf "$INSTALL_DIR"
+cp week-by-week.json "$INSTALL_DIR"
+cp "$NFL_DATA_BINARY" "$INSTALL_DIR"
+cp populate_kibana.sh "$INSTALL_DIR"
 
-cd $INSTALL_DIR
-if test -s $LOGSTASH_BINARY
+cd "$INSTALL_DIR"
+if test -s "$LOGSTASH_BINARY"
 then
-    echo Logstash already Downloaded
+    echo "Logstash already Downloaded"
 else
-	echo Downloading logstash 1.4.2
- 	curl -O https://download.elasticsearch.org/logstash/logstash/$LOGSTASH_BINARY
+	echo "Downloading logstash 1.4.2"
+ 	curl -O "https://download.elasticsearch.org/logstash/logstash/$LOGSTASH_BINARY"
 fi
 
-if test -s $ES_BINARY
+if test -s "$ES_BINARY"
 then
-    echo Elasticsearch already Downloaded
+    echo "Elasticsearch already Downloaded"
 else
-	echo Downloading $ES_PATH
-	curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/$ES_BINARY
+	echo "Downloading $ES_PATH"
+	curl -O "https://download.elasticsearch.org/elasticsearch/elasticsearch/$ES_BINARY"
 fi
 
-echo Downloaded... Now installing
-echo Unpacking logstash
-tar zxf $LOGSTASH_BINARY
+echo "Downloaded... Now installing"
+echo "Unpacking logstash"
+tar zxf "$LOGSTASH_BINARY"
 
-echo Unpacking Elasticsearch
-tar zxf $ES_BINARY
+echo "Unpacking Elasticsearch"
+tar zxf "$ES_BINARY"
 
 pwd
-echo Unpacking nfl dataset
-gunzip -f $NFL_DATA_BINARY
+echo "Unpacking nfl dataset"
+gunzip -f "$NFL_DATA_BINARY"
 
-cd $ES_PATH
+cd "$ES_PATH"
 if [ -d "plugins/marvel" ];
 then
-    echo Marvel already installed
+    echo "Marvel already installed"
 else
-	echo Installing Marvel latest
+	echo "Installing Marvel latest"
 	bin/plugin -i elasticsearch/marvel/latest
 fi
 
 if [ -d "plugins/kopf" ];
 then
-    echo kopf already installed
+    echo "kopf already installed"
 else
-	echo Installing kopf latest
+	echo "Installing kopf latest"
 	bin/plugin -i lmenezes/elasticsearch-kopf
 fi
 
-echo Starting Elasticsearch to run in the background.  
+echo "Starting Elasticsearch to run in the background."
 bin/elasticsearch -d --cluster.name=es_demo --number_of_shards=1 --number_of_replicas=0 --network.host=localhost
 
 cd ..
 pwd
-if test -s $KIBANA_BINARY
+if test -s "$KIBANA_BINARY"
 then
-    echo Kibana already Downloaded
+    echo "Kibana already Downloaded"
 else
-	echo Downloading Kibana Latest
-	curl -O https://download.elasticsearch.org/kibana/kibana/$KIBANA_BINARY.tar.gz
+	echo "Downloading Kibana Latest"
+	curl -O "https://download.elasticsearch.org/kibana/kibana/$KIBANA_BINARY.tar.gz"
 fi
 
-if [ -d $KIBANA_BINARY ];
+if [ -d "$KIBANA_BINARY" ];
 then
-    echo Kibana already installed
+    echo "Kibana already installed"
 else
-	echo Installing Kibana latest	
-	tar zxvf $KIBANA_BINARY.tar.gz
+	echo "Installing Kibana latest"
+	tar zxvf "$KIBANA_BINARY.tar.gz"
 fi
 ./$KIBANA_BINARY/bin/kibana &
 
@@ -94,10 +95,10 @@ pwd
 ./populate_kibana.sh
 pwd
 
-cd $LOGSTASH_PATH
-echo loading nfl data using logstash
+cd "$LOGSTASH_PATH"
+echo "loading nfl data using logstash"
 pwd
-bin/logstash -f ../nfl.conf < ../$NFL_DATA_FILE_NAME
+bin/logstash -f ../nfl.conf < "../$NFL_DATA_FILE_NAME"
 
 echo Now browse to:
 echo  http://localhost:9200/_plugin/marvel
